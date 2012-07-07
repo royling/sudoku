@@ -1,5 +1,5 @@
 (function() {
-alert("debug");
+
 function Sudoku() {
 	this.rows = new Array(9);
 	for (var i = 0; i < 9; i++) {
@@ -200,27 +200,7 @@ function _uniq(arr) {
 	return false;
 }
 
-function SudokuTest(sudokuObject) {
-	this.sudoku = sudokuObject;
+if (!window.Sudoku) {
+	window.Sudoku = Sudoku;
 }
-
-SudokuTest.prototype.assertEquals = function(target, expectedResult) {
-	var result = target;
-	if (typeof target == "function") {
-		result = target.call(this.sudoku);
-	}
-	alert(result === expectedResult);
-}
-
-SudokuTest.prototype.testIsUnitResolved = function() {
-	this.assertEquals(this.sudoku.isUnitResolved([1,2,3,4,5,6,7,8,9]), true);
-	this.assertEquals(this.sudoku.isUnitResolved([9,2,3,4,5,6,1,8,7]), true);
-	this.assertEquals(this.sudoku.isUnitResolved([0,2,3,4,5,6,7,8,9]), false);
-	this.assertEquals(this.sudoku.isUnitResolved([1,2,3,4,0,6,7,8,9]), false);
-}
-
-var iUnitTest = new SudokuTest(new Sudoku);
-iUnitTest.testIsUnitResolved();
-/*
-*/
 })();
